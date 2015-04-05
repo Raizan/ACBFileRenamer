@@ -22,22 +22,19 @@ anime_dictionary = open(dictionary_path, "r+")
 dictionary_read = json.loads(anime_dictionary.read())
 
 
-
 def rename_files(path):
     file_list = os.listdir(path)
-    print file_list
-
     file_qty = len(file_list)
     counter = 1
 
     for file_name in file_list:
-        print "Processing: ", file_name, " (", counter, "/", file_qty, ")"
-        counter += 1
-
         splitted = file_name.split('_')
 
         # Downloaded from Mediafire
         if len(splitted) == 6:
+            print "Processing: ", file_name, " (", counter, "/", file_qty, ")"
+            counter += 1
+
             initial = splitted[1].lower()
             # Check if initial is in dictionary
             if initial in dictionary_read["anime_dictionary"]:
@@ -48,6 +45,9 @@ def rename_files(path):
 
         # Downloaded from Mega
         elif len(splitted) == 5:
+            print "Processing: ", file_name, " (", counter, "/", file_qty, ")"
+            counter += 1
+
             initial = splitted[0].lower()
             # Check if initial is in dictionary
             if initial in dictionary_read["anime_dictionary"]:
